@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::controller(HomeController::class)->group(function(){
-   Route::get('/home','index');
+   Route::get('/','index');
+   Route::get('/tambah_data', 'FromTambahData')->name('tambah_data');
+});
+// login
+Route::controller(LoginController::class)->group(function(){
+     Route::get('/login','index');
 });

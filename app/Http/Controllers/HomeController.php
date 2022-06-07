@@ -10,7 +10,14 @@ class HomeController extends Controller
     {
         return view('home.index',[
             "title" => "Home",
-             "pages" => "Table"
+             "pages" => "Data Barang"
         ]);
+    }
+    public function FromTambahData()
+    {
+       return view('home.from-tambah-data',[
+              "title" => "From",
+              "pages" => "Tambah Data Barang"
+       ]);
     }
 }

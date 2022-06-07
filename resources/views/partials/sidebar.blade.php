@@ -16,7 +16,7 @@
             </ul> --}}
           {{-- </li> --}}
           <li class="menu-header"></li>
-          <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+          <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Data Barang</span></a></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
             <ul class="dropdown-menu">
