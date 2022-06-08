@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(HomeController::class)->group(function(){
-   Route::get('/','index');
+   Route::get('/','index')->middleware('auth');
    Route::get('/tambah_data', 'FromTambahData')->name('tambah_data');
 });
 // login
 Route::controller(LoginController::class)->group(function(){
      Route::get('/login','index');
+     Route::post('/authenticate','authenticate')->name('authenticate');
+     Route::post('/logout','logout')->name('logout');
 });
