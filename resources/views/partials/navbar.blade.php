@@ -38,12 +38,12 @@
     <ul class="navbar-nav navbar-right">
       
       <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" >
-        <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+        {{-- <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1"> --}}
         <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->name }}</div></a>
         <div class="dropdown-menu dropdown-menu-right mt-3" >
           <form action="{{ route('logout') }}" method="post" class="dropdown-item has-icon text-danger">
             @csrf
-            <i class="fas fa-sign-out-alt mt-2"></i> <button type="submit" style="background:none; border:none;" class="text-danger"> Logout</button>
+         <button type="submit" style="background:none; border:none;" class="text-danger"><i class="fas fa-sign-out-alt mt-2"></i> Logout</button>
           </form>
           {{-- <a href="{{ route('logout') }}" > --}}
           </a>

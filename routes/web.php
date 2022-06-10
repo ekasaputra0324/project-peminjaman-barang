@@ -3,7 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(HomeController::class)->group(function(){
+   Route::get('/home','index')->middleware('auth');
    Route::get('/','index')->middleware('auth');
-   Route::get('/tambah_data', 'FromTambahData')->name('tambah_data');
+   Route::post('/tambah_data', 'store')->name('tambahdata');
 });
 // login
-Route::controller(LoginController::class)->group(function(){
-     Route::get('/login','index');
-     Route::post('/authenticate','authenticate')->name('authenticate');
-     Route::post('/logout','logout')->name('logout');
-});
+
+     Route::get('/login',[LoginController::class,'index'])->middleware('guest');
+     Route::post('/login',[LoginController::class,'authenticate'])->name('authenticate');
+     Route::post('/logout',[LoginController::class,'logout'])->name('logout');
+// });
