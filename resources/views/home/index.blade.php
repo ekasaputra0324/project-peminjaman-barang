@@ -14,7 +14,8 @@
       <div class="col-12 col-sm-6 col-md-6 col-lg-3">
         <article class="article">
           <div class="article-header">
-            <div class="article-image" data-background="../assets/img/news/img08.jpg">
+            <div class="article-image" data-background="{{ asset('storage/'. $barang->image) }}">
+              {{-- <img src="{{ asset('storage'. $barang->image) }}" alt="" srcset=""> --}}
             </div>
             <div class="article-title">
               <h2><a href="#">{{ $barang->nama }}</a></h2>
@@ -26,7 +27,8 @@
                Sisa Barang : 0
            </p>
             <div class="article-cta">
-              <a href="#" class="btn btn-primary">Read More</a>
+              <a href="#" class="btn btn-danger" onclick="deleted({{ $barang->id }})" >Hapus</a>
+              <a href="#" class="btn btn-warning update" data-id="{{ $barang->id }}"  data-toggle="modal" data-target="#tambahdata" >Edit</a>
             </div>
           </div>
         </article>
@@ -47,19 +49,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('tambahdata') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('tambahdata') }}" method="post" id="buatubah" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
               <label for="exampleInput">Nama Barang</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="nama" placeholder="Nama Barang">
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Barang">
             </div>
             <div class="form-group">
               <label for="exampleInput">Foto Barang</label>
-              <input type="file" class="form-control" id="exampleInputEmail1" name="image" placeholder="Nama Barang">
+              <input type="file" class="form-control" id="image" name="image" placeholder="Nama Barang">
             </div>
             <div class="form-group">
               <label for="exampleInput">Jumlah Barang</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" name="jumlah_barang" placeholder="Jumlah Barang">
+              <input type="text" class="form-control" id="jumlah_barang" name="jumlah_barang" placeholder="Jumlah Barang">
             </div>
         
         </div>
@@ -74,6 +76,6 @@
 
   @endsection
   @section('script')
-  <script src="../assets/js/delete.js"></script>
+  <script src="../assets/js/barang.js"></script>
   @endsection
 @endsection

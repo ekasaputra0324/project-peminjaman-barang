@@ -29,7 +29,7 @@ class LoginController extends Controller
             Alert::success('Congrats', 'Login Berhasil');
             return redirect('/');
         }
-        Alert::warning('Warning Title', 'Password atau Email Salah');
+        Alert::warning('Warning', 'Password atau Email Salah');
         return redirect('/login');
   
     }

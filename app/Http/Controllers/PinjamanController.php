@@ -15,7 +15,7 @@ class PinjamanController extends Controller
      */
     public function index()
     {
-        //
+      
     }
 
     /**

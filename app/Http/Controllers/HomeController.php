@@ -16,21 +16,46 @@ class HomeController extends Controller
             "barangs" => $barang
         ]);
     }
+
     public function store(Request $request)
     {
-        //    $validate = $request->validate([
-        //            'name' => 'required',
-        //            'image' => 'required',
-        //            'jumlah_barang' => 'required'
-        //        ]);
-      $image = $request->file('image')->store('barang-image');
+      $name =  $request->image->getClientOriginalName();
+      $path = $request->file('image')->storeAs('barang', $name);
       $barang = new Barang();
       $barang->nama = $request->nama;
-      $barang->image = $image;
+      $barang->image = $path;
       $barang->jumlah_barang = $request->jumlah_barang;
-      $barang->save();
-      Alert::success('Congrats', 'Data Berhasil Disimpan');
-      return redirect('/');
+      if ($barang->save()) {
+          Alert::success('Congrats', 'Data barang Berhasil Disimpan');
+          return redirect('/');
+      }
+      Alert::error('Error', 'Data barang gagal disimpan');
+          return redirect('/');
+    }
+    public function update(Request $request, $id)
+    {
+        $barang = Barang::where('id',$id);
+        $name =  $request->image->getClientOriginalName();
+        $path = $request->file('image')->storeAs('barang', $name);
+        $barang->update([
+            'nama' => $request->nama,
+            'image' => $path,
+            'jumlah_barang' => $request->jumlah_barang,
+        ]);
+        Alert::success('Congrats', 'Data barang Berhasil Disimpan');
+        return redirect('/');
 
-}
+    }
+    public function delete($id)
+    {
+        $barang = Barang::where('id', $id);
+        $barang->delete();
+        Alert::success('Congrats', 'Data Berhasil Dihapus');
+        return redirect('/');
+    }
+    public function getdata($id)
+    {
+        $barang = Barang::where('id' , $id)->get();
+        echo json_encode($barang);
+    }
 }
