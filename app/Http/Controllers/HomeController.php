@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Pinjaman;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 class HomeController extends Controller
@@ -10,10 +11,21 @@ class HomeController extends Controller
     public function index()
     {
         $barang = Barang::all();
+        $pinjaman = Pinjaman::where('status', 1)->count();
+        $loop = 1;
+        foreach ($barang as $b) {
+            $id = $b->id;
+        }
+         dd($pinjaman[$id]);
+        // foreach ($pinjaman[$id] as $) {
+        //     # code...
+        // }
+
         return view('home.index',[
             "title" => "Home",
             "pages" => "Data Barang",
-            "barangs" => $barang
+            "barangs" => $barang,
+            "pinjamans" => $pinjaman 
         ]);
     }
 

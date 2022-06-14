@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pinjaman;
 use App\Http\Requests\StorePinjamanRequest;
 use App\Http\Requests\UpdatePinjamanRequest;
+use Illuminate\Support\Facades\DB;
 
 class PinjamanController extends Controller
 {
@@ -15,7 +16,15 @@ class PinjamanController extends Controller
      */
     public function index()
     {
+      $data = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+              ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->get();
       
+      
+      return view('pinjaman.index',[
+         "pages" => "Data Pinjaman",
+         "title" => "Pinjaman",
+         "pinjamans" => $data
+      ]);
     }
 
     /**

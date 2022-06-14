@@ -10,7 +10,8 @@
     <h2 class="section-title">Barang</h2>
     <p class="section-lead">Data Barang Yang Ada Di Ruang Tollman</p>
     <div class="row">
-      @foreach ($barangs as $barang)     
+      @foreach ($barangs as $barang)
+      <?php  $id = $barang->id; ?>     
       <div class="col-12 col-sm-6 col-md-6 col-lg-3">
         <article class="article">
           <div class="article-header">
@@ -23,7 +24,11 @@
           </div>
           <div class="article-details">
             <p>Jumlah Barang : {{ $barang->jumlah_barang }} <br> 
-               Jumlah Yang Terpinjam : 0 <br>
+              <?php $total = 0; ?>
+              {{-- @foreach ($pinjamans[$id] as $pinjaman) --}}
+            
+              Jumlah Yang Terpinjam : {{ 0 }} <br>
+              {{-- @endforeach --}}
                Sisa Barang : 0
            </p>
             <div class="article-cta">
@@ -53,15 +58,15 @@
             @csrf
             <div class="form-group">
               <label for="exampleInput">Nama Barang</label>
-              <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Barang">
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Barang" required>
             </div>
             <div class="form-group">
               <label for="exampleInput">Foto Barang</label>
-              <input type="file" class="form-control" id="image" name="image" placeholder="Nama Barang">
+              <input type="file" class="form-control" id="image" name="image" placeholder="Nama Barang" required>
             </div>
             <div class="form-group">
               <label for="exampleInput">Jumlah Barang</label>
-              <input type="text" class="form-control" id="jumlah_barang" name="jumlah_barang" placeholder="Jumlah Barang">
+              <input type="text" class="form-control" id="jumlah_barang" name="jumlah_barang" placeholder="Jumlah Barang" required>
             </div>
         
         </div>
