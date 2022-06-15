@@ -16,7 +16,7 @@
             </ul> --}}
           {{-- </li> --}}
           <li class="menu-header"></li>
-          <li class="active"><a class="nav-link" href="/"><i class="far fa-square"></i> <span>Data Barang</span></a></li>
+          <li class="active"><a class="nav-link" href="/"><i class='fas fa-book-open'></i><span>Data Barang</span></a></li>
       {{-- </ul> class=""><a class="nav-link" href="/"><i class="fas fa-plug"></i> <span>Data Pinjaman</span></a></li> --}}
         <li class="nav-item dropdown">
             <a href="/" class="nav-link has-dropdown"><i class='fas fa-address-book'></i> <span>Data Pinjaman</span></a>

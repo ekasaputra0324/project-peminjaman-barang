@@ -33,6 +33,7 @@
               <i class='fas fa-trash-alt fa-12x' style='color:#ff0505' data-id="" onclick="deletedpinjama()"></i>
           </td>
       </tr>
+      <?php $i++; ?>
       @endforeach
     </tbody>
     </table>
@@ -49,24 +50,29 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('tambahdata') }}" method="post" id="buatubah" enctype="multipart/form-data">
+          <form action="{{ route('tambahpinjaman') }}" method="post" id="buatubah" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="exampleInput">Nama Peminjam</label>
-              <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Peminjam">
-            </div>
-            <div class="form-group">
-                <label for="exampleInput">Nama Barang</label>
-                <input type="text" class="form-control" id="nama" name="nama_barang" placeholder="Nama Barang">
+                <label for="exampleInput">Nama Peminjam</label>
+                <input type="text" class="form-control" id="nama_peminjam" name="nama_peminjam" placeholder="Nama Peminjam">
               </div>
+              <div class="form-group">
+            <label for="barang">Barang</label>
+            <select class="form-control" name="barang_id">
+              @foreach ($barangs as $barang)
+              <option value="{{ $barang->id }}" >{{ $barang->nama }}</option>
+              @endforeach
+            </select>
+          </div>
             <div class="form-group">
               <label for="exampleInput">Tanggal Peminjaman</label>
               <input type="date" class="form-control" id="tanggal_peminjaman" name="tanggal_peminjaman" placeholder="Tanggal Peminjan">
             </div>
-            <div class="form-group">
-              <label for="exampleInput">Tanggal Pengembalian</label>
-              <input type="date" class="form-control" id="tanggal_pengembalian" name="tanggal pembgembalian" placeholder="Tanggal Pengembalian">
-            </div>
+            <label for="barang">Status Pengembalian</label>
+            <select class="form-control" name="status">
+              <option value="0" >Belum Di Kembalikan</option>
+              <option value="1" >Sudah Di Kembalikan</option>
+            </select>
         
         </div>
         <div class="modal-footer">

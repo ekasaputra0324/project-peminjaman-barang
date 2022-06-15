@@ -11,8 +11,6 @@ class HomeController extends Controller
     public function index()
     {
         $barang = Barang::all();
-       
-
         return view('home.index',[
             "title" => "Home",
             "pages" => "Data Barang",
@@ -28,7 +26,7 @@ class HomeController extends Controller
             'jumlah_barang' => 'required'
         ]);
        
-      $name =  $request->image->getClientOriginalName();
+     $name =  $request->image->getClientOriginalName();
       $path = $request->file('image')->storeAs('barang', $name);
       $barang = new Barang();
       $barang->nama = $request->nama;
