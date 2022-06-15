@@ -30,7 +30,7 @@
           @endif
           <td>
               <i class='fas fa-pen fa-12x' style='color:#1b6aea'  data-toggle="modal" data-target="#tambahdata"></i> |
-              <i class='fas fa-trash-alt fa-12x' style='color:#ff0505' data-id="" onclick="deletedpinjama()"></i>
+              <i class='fas fa-trash-alt fa-12x' style='color:#ff0505' data-id="" onclick="deletedpinjaman({{ $item->id }})"></i>
           </td>
       </tr>
       <?php $i++; ?>
@@ -84,5 +84,8 @@
     </div>
   </div>
 
+@endsection
+@section('script')
+<script src="../assets/js/pinjaman.js"></script>
 @endsection
 @endsection

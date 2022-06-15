@@ -8,6 +8,6 @@ function validate(){
       .then((willDelete) => {
         if (willDelete) {
           window.location = '/logout'
-        } ..
+        }
       });
 }

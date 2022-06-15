@@ -74,7 +74,7 @@ class PinjamanController extends Controller
    }
    public function getDatapinjamanByid($id)
    {
-      $pinjamna = Pinjaman::where('id', $id);
+      $pinjaman = Pinjaman::where('id', $id);
       echo json_encode($pinjaman);
    }
 }
