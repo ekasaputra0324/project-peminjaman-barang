@@ -36,4 +36,6 @@ Route::controller(PinjamanController::class)->group(function(){
    Route::get('/pinjaman','index')->middleware('auth');
    Route::post('/tambahpinjaman','store')->name('tambahpinjaman');
    Route::get('/deletedpinjaman/{id}','deleted')->name('deletedpinjaman');
+   Route::get('/getdatapinjamanByid/{id}', 'getDatapinjamanByid');
+   Route::post('/updatepinjaman/{id}', 'edit');
 });

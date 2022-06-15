@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-<button type="button" class="btn btn-primary" style="margin-left: 88%; width:12%;" data-toggle="modal" data-target="#tambahdata">Tambah Data</button>
+<button type="button" class="btn btn-primary tambahpinjaman" style="margin-left: 88%; width:12%;" data-toggle="modal" data-target="#tambahdata">Tambah Data</button>
 <div class="card" style="margin-top: 3%">
 
  <div class="card-body">
@@ -29,7 +29,7 @@
           <td class="text-danger">Belum Di Kembalikan</td>
           @endif
           <td>
-              <i class='fas fa-pen fa-12x' style='color:#1b6aea'  data-toggle="modal" data-target="#tambahdata"></i> |
+              <i class='fas fa-pen fa-12x updatepinjaman' data-id="{{ $item->id }}" style='color:#1b6aea'  data-toggle="modal" data-target="#tambahdata"></i> |
               <i class='fas fa-trash-alt fa-12x' style='color:#ff0505' data-id="" onclick="deletedpinjaman({{ $item->id }})"></i>
           </td>
       </tr>
@@ -50,7 +50,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('tambahpinjaman') }}" method="post" id="buatubah" enctype="multipart/form-data">
+          <form action="{{ route('tambahpinjaman') }}" method="post" id="buatubahpinjaman" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="exampleInput">Nama Peminjam</label>
@@ -58,7 +58,7 @@
               </div>
               <div class="form-group">
             <label for="barang">Barang</label>
-            <select class="form-control" name="barang_id">
+            <select class="form-control" name="barang_id" id="barang_id">
               @foreach ($barangs as $barang)
               <option value="{{ $barang->id }}" >{{ $barang->nama }}</option>
               @endforeach
@@ -69,7 +69,7 @@
               <input type="date" class="form-control" id="tanggal_peminjaman" name="tanggal_peminjaman" placeholder="Tanggal Peminjan">
             </div>
             <label for="barang">Status Pengembalian</label>
-            <select class="form-control" name="status">
+            <select class="form-control" name="status" id="status">
               <option value="0" >Belum Di Kembalikan</option>
               <option value="1" >Sudah Di Kembalikan</option>
             </select>

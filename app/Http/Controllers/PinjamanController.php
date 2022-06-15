@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pinjaman;
-use App\Http\Requests\StorePinjamanRequest;
-use App\Http\Requests\UpdatePinjamanRequest;
 use App\Models\Barang;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -12,11 +10,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PinjamanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+   
     public function index()
     {
       $data = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
@@ -60,21 +55,21 @@ class PinjamanController extends Controller
           return redirect('/pinjaman');
         }
    }
-   public function update(Request $request, $id)
+   public function edit(Request $request, $id)
    {
-      $pinjaman = Pinjaman::where('id', $id)->get();
-      $pinjaman->update([
-         'barang_id' => $request->barang_id,
-         'nama_peminjam' => $request->nama_peminjam,
-         'status' => $request->status,
-         'tanggal_peminjaman' => $request->tanggal_peminjaman
-      ]);
+      $pinjaman = Pinjaman::find($id);
+      $pinjaman->barang_id  = $request->barang_id;
+      $pinjaman->nama_peminjam = $request->nama_peminjam;
+      $pinjaman->tanggal_peminjaman = $request->tanggal_peminjaman;
+      $pinjaman->status = $request->status;
+      $pinjaman->save();
+    
       Alert::success('Congrats','data pinjaman berhasil di edit');
       return redirect('/pinjaman');
    }
    public function getDatapinjamanByid($id)
    {
-      $pinjaman = Pinjaman::where('id', $id);
+      $pinjaman = Pinjaman::where('id', $id)->get();
       echo json_encode($pinjaman);
    }
 }
