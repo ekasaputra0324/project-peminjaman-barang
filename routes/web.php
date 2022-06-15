@@ -34,4 +34,5 @@ Route::controller(LoginController::class)->group(function(){
 // data pinjamana
 Route::controller(PinjamanController::class)->group(function(){
    Route::get('/pinjaman','index')->middleware('auth');
+   Route::get('/tambahpinjaman','create')->name('tambahpinjaman');
 });

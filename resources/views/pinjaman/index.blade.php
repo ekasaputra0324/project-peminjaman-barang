@@ -1,9 +1,8 @@
 @extends('layouts.main')
 @section('content')
-<button type="button" class="btn btn-primary" style="margin-left: 90%;" data-toggle="modal" data-target="#tambahdata">Tambah Data</button>
+<button type="button" class="btn btn-primary" style="margin-left: 88%; width:12%;" data-toggle="modal" data-target="#tambahdata">Tambah Data</button>
 <div class="card" style="margin-top: 3%">
-    <div class="card-title">
-    </div>
+
  <div class="card-body">
     <table id="datatables">
         <thead>
@@ -27,7 +26,7 @@
           @if ($item->status === 1)
           <td class="text-success">Telah Di Kemblikan</td>
           @else
-              
+          <td class="text-danger">Belum Di Kembalikan</td>
           @endif
           <td>
               <i class='fas fa-pen fa-12x' style='color:#1b6aea'  data-toggle="modal" data-target="#tambahdata"></i> |

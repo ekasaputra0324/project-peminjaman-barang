@@ -16,7 +16,6 @@
         <article class="article">
           <div class="article-header">
             <div class="article-image" data-background="{{ asset('storage/'. $barang->image) }}">
-              {{-- <img src="{{ asset('storage'. $barang->image) }}" alt="" srcset=""> --}}
             </div>
             <div class="article-title">
               <h2><a href="#">{{ $barang->nama }}</a></h2>

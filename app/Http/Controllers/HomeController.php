@@ -11,26 +11,23 @@ class HomeController extends Controller
     public function index()
     {
         $barang = Barang::all();
-        $pinjaman = Pinjaman::where('status', 1)->count();
-        $loop = 1;
-        foreach ($barang as $b) {
-            $id = $b->id;
-        }
-         dd($pinjaman[$id]);
-        // foreach ($pinjaman[$id] as $) {
-        //     # code...
-        // }
+       
 
         return view('home.index',[
             "title" => "Home",
             "pages" => "Data Barang",
-            "barangs" => $barang,
-            "pinjamans" => $pinjaman 
+            "barangs" => $barang, 
         ]);
     }
 
     public function store(Request $request)
     {
+      $validateData = $request->validate([
+            'image' => 'required|mimes:jpg,png,jpeg,gif,svg|',
+            'nama' => 'required',
+            'jumlah_barang' => 'required'
+        ]);
+       
       $name =  $request->image->getClientOriginalName();
       $path = $request->file('image')->storeAs('barang', $name);
       $barang = new Barang();

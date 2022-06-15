@@ -6,6 +6,7 @@ use App\Models\Pinjaman;
 use App\Http\Requests\StorePinjamanRequest;
 use App\Http\Requests\UpdatePinjamanRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class PinjamanController extends Controller
 {
@@ -18,8 +19,8 @@ class PinjamanController extends Controller
     {
       $data = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
               ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->get();
-      
-      
+
+
       return view('pinjaman.index',[
          "pages" => "Data Pinjaman",
          "title" => "Pinjaman",
@@ -27,69 +28,25 @@ class PinjamanController extends Controller
       ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+   public function store(Rrquest $request){
+     $request->validate([
+        'nama' => 'required',
+        'tanggal_peminjaman' => 'required',
+        'nama_peminjam' => 'required',
+        'status' => 'required'
+     ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePinjamanRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePinjamanRequest $request)
-    {
-        //
-    }
+     $pinjaman = new Pinjaman();
+     $pinjaman->barang_id  = $request->nama;
+     $pinjaman->nama_peminjam = $request->nama_peminjam;
+     $pinjaman->tanggal_peminjaman = $request->tanggal_pinjaman;
+     $pinjaman->status = $request->status;
+     $pinjaman->save();
+   }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pinjaman  $pinjaman
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pinjaman $pinjaman)
-    {
-        //
-    }
+   public function deleted($id){
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pinjaman  $pinjaman
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pinjaman $pinjaman)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatePinjamanRequest  $request
-     * @param  \App\Models\Pinjaman  $pinjaman
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatePinjamanRequest $request, Pinjaman $pinjaman)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pinjaman  $pinjaman
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pinjaman $pinjaman)
-    {
-        //
-    }
+        $pinjaman = Pinjaman::where('id', $id);
+        $pinjaman->delete();
+   }
 }
