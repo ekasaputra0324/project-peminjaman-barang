@@ -18,7 +18,7 @@ use App\Http\Middleware\Authenticate;
 
 
 Route::controller(HomeController::class)->group(function(){
-   Route::get('/home','index')->middleware('auth');
+   Route::get('/home','index')->name('home')->middleware('auth');
    Route::get('/','index')->middleware('auth');
    Route::post('/tambah_data', 'store')->name('tambahdata');
    Route::get('/deleted/{id}', 'delete')->name('deleted');
@@ -33,9 +33,11 @@ Route::controller(LoginController::class)->group(function(){
 });
 // data pinjamana
 Route::controller(PinjamanController::class)->group(function(){
-   Route::get('/pinjaman','index')->middleware('auth');
+   Route::get('/pinjaman','index')->name('pinjaman')->middleware('auth');
    Route::post('/tambahpinjaman','store')->name('tambahpinjaman');
    Route::get('/deletedpinjaman/{id}','deleted')->name('deletedpinjaman');
    Route::get('/getdatapinjamanByid/{id}', 'getDatapinjamanByid');
    Route::post('/updatepinjaman/{id}', 'edit');
+   Route::get('/pinjaman/retunred', 'retunred')->name('retunred')->middleware('auth');
+   Route::get('/pinjaman/restored', 'restored')->name('restored')->middleware('auth');
 });

@@ -72,4 +72,30 @@ class PinjamanController extends Controller
       $pinjaman = Pinjaman::where('id', $id)->get();
       echo json_encode($pinjaman);
    }
+   public function retunred()
+   {
+      $pinjaman = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+                  ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->where('pinjamen.status', 1)->get();
+      $barang = Barang::all();
+      return view('pinjaman.index',[
+          "pages" => "Data Pinjaman",
+          "title" => "Retutned",
+          "pinjamans" => $pinjaman,
+          "barangs" => $barang,
+          "breadcrumb" => "Retutned"
+      ]);
+   }
+   public function restored()
+   {
+      $pinjaman = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+      ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->where('pinjamen.status', 0)->get();
+      $barang = Barang::all();
+      return view('pinjaman.index',[
+      "pages" => "Data Pinjaman",
+      "title" => "Restored",
+      "pinjamans" => $pinjaman,
+      "barangs" => $barang,
+      "breadcrumb" => "Restored"
+      ]);
+   }
 }

@@ -35,7 +35,10 @@
           <div class="section-header">
             <h1>{{ $pages }}</h1>
             <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">{{ $pages }}</a></div>
+              <div class="breadcrumb-item active"><a href="#">{{ $pages }}</a></div> 
+              @if (isset($breadcrumb))
+              <div class="breadcrumb-item active"><a href="#">{{ $breadcrumb }}</a></div>
+              @endif
             </div>
           </div>
            @yield('content')

@@ -16,14 +16,14 @@
             </ul> --}}
           {{-- </li> --}}
           <li class="menu-header"></li>
-          <li class="active"><a class="nav-link" href="/"><i class='fas fa-book-open'></i><span>Data Barang</span></a></li>
+          <li class="active"><a class="nav-link" href="{{ route('home') }}"><i class='fas fa-book-open'></i><span>Data Barang</span></a></li>
       {{-- </ul> class=""><a class="nav-link" href="/"><i class="fas fa-plug"></i> <span>Data Pinjaman</span></a></li> --}}
         <li class="nav-item dropdown">
             <a href="/" class="nav-link has-dropdown"><i class='fas fa-address-book'></i> <span>Data Pinjaman</span></a>
             <ul class="dropdown-menu">
-              <li><a class="nav-link" href="/pinjaman">all</a></li>
-              <li><a class="nav-link" href="bootstrap-alert.html">returned</a></li>
-              <li><a class="nav-link" href="bootstrap-badge.html">not been restored</a></li>
+              <li><a class="nav-link" href="{{ route('pinjaman') }}">all</a></li>
+              <li><a class="nav-link" href="{{ route('retunred') }}">returned</a></li>
+              <li><a class="nav-link" href="{{ route('restored') }}">not been restored</a></li>
             </ul>
           </li>
           {{-- <li class="menu-header">Stisla</li>
