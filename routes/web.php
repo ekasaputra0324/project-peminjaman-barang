@@ -40,4 +40,7 @@ Route::controller(PinjamanController::class)->group(function(){
    Route::post('/updatepinjaman/{id}', 'edit');
    Route::get('/pinjaman/retunred', 'retunred')->name('retunred')->middleware('auth');
    Route::get('/pinjaman/restored', 'restored')->name('restored')->middleware('auth');
+   Route::get('/retunredPDF', 'retunredPDF')->name('retunredPDF')->middleware('auth');
+   Route::get('/restoredPDF', 'restoredPDF')->name('restoredPDF')->middleware('auth');
+   Route::get('/allPDF', 'allPDF')->name('allPDF')->middleware('auth');
 });

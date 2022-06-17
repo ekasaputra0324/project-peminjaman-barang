@@ -22,7 +22,8 @@ class PinjamanController extends Controller
          "pages" => "Data Pinjaman",
          "title" => "Pinjaman",
          "pinjamans" => $data,
-         "barangs" => $barang
+         "barangs" => $barang,
+         "PDF" => "allPDF"
       ]);
     }
 
@@ -82,7 +83,8 @@ class PinjamanController extends Controller
           "title" => "Retutned",
           "pinjamans" => $pinjaman,
           "barangs" => $barang,
-          "breadcrumb" => "Retutned"
+          "breadcrumb" => "Retutned",
+          "PDF" => "retunredPDF"
       ]);
    }
    public function restored()
@@ -95,7 +97,31 @@ class PinjamanController extends Controller
       "title" => "Restored",
       "pinjamans" => $pinjaman,
       "barangs" => $barang,
-      "breadcrumb" => "Restored"
+      "breadcrumb" => "Restored",
+      "PDF" => "restoredPDF"
       ]);
    }
+   public function allPDF()
+   {
+      $data = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+                  ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->get();
+      $pdf = PDF::loadView('pinjaman.pdf.all',['data' => $data]);
+      return $pdf->download('pinjaman.pdf');
+   }
+   public function retunredPDF()
+   {
+      $data =  DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+      ->select('pinjamen.id','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','barangs.nama','pinjamen.status')
+      ->where('pinjamen.status',1)->get();
+      $pdf = PDF::loadView('pinjaman.pdf.all',['data' => $data]);
+      return $pdf->download('pinjaman.pdf');
+   }
+   public function restoredPDF()
+   {
+      $data =  DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+            ->select('pinjamen.id','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','barangs.nama','pinjamen.status')
+            ->where('pinjamen.status',0)->get();
+      $pdf = PDF::loadView('pinjaman.pdf.all',['data' => $data]);
+      return $pdf->download('pinjaman.pdf');
+   } 
 }

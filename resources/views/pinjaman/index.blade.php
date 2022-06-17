@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('content')
-<button type="button" class="btn btn-primary tambahpinjaman" style="margin-left: 88%; width:12%;" data-toggle="modal" data-target="#tambahdata">Tambah Data</button>
-<div class="card" style="margin-top: 3%">
-
+<button type="button" class="btn btn-primary tambahpinjaman" style="margin-left: 88%; width:12%;  " data-toggle="modal" data-target="#tambahdata">Tambah Data</button>
+<a href="{{ route($PDF) }}" class="btn btn-danger" style="margin-left: 75%; margin-top:-5%; width:12%;">Convert to PDF</a>
+<div class="card" style="margin-bottom: -3%">
  <div class="card-body">
     <table id="datatables">
         <thead>

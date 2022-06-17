@@ -26,10 +26,9 @@
     <div class="main-wrapper">
       <div class="navbar-bg"></div>
      @include('partials.navbar')
-      {{-- sidebar --}}
+      
      @include('partials.sidebar')
-
-      <!-- Main Content -->
+     
       <div class="main-content">
         <section class="section">
           <div class="section-header">
