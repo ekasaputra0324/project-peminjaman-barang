@@ -11,7 +11,7 @@
             <th>Nama Peminjam</th>
             <th>Nama Barang</th>
             <th>Tanggal Peminjaman</th>
-            <th>Status</th>
+            <th>Status Peminjaman</th>
             <th></th>
         </tr>
     </thead>

@@ -14,6 +14,7 @@ class PinjamanController extends Controller
    
     public function index()
     {
+      
       $data = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
               ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->get();
 
@@ -42,6 +43,7 @@ class PinjamanController extends Controller
      $pinjaman->tanggal_peminjaman = $request->tanggal_peminjaman;
      $pinjaman->status = $request->status;
      $pinjaman->save();
+
       Alert::success('Congrats','data pinjaman berhasil di tambahkan');
       return redirect('/pinjaman');
     
@@ -78,50 +80,50 @@ class PinjamanController extends Controller
       $pinjaman = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
                   ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->where('pinjamen.status', 1)->get();
       $barang = Barang::all();
-      return view('pinjaman.index',[
-          "pages" => "Data Pinjaman",
-          "title" => "Retutned",
-          "pinjamans" => $pinjaman,
-          "barangs" => $barang,
-          "breadcrumb" => "Retutned",
-          "PDF" => "retunredPDF"
-      ]);
+         return view('pinjaman.index',[
+            "pages" => "Data Pinjaman",
+            "title" => "Retutned",
+            "pinjamans" => $pinjaman,
+            "barangs" => $barang,
+            "breadcrumb" => "Retutned",
+            "PDF" => "retunredPDF"
+         ]);
    }
    public function restored()
    {
-      $pinjaman = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
-      ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->where('pinjamen.status', 0)->get();
-      $barang = Barang::all();
-      return view('pinjaman.index',[
-      "pages" => "Data Pinjaman",
-      "title" => "Restored",
-      "pinjamans" => $pinjaman,
-      "barangs" => $barang,
-      "breadcrumb" => "Restored",
-      "PDF" => "restoredPDF"
-      ]);
+         $pinjaman = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+         ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->where('pinjamen.status', 0)->get();
+         $barang = Barang::all();
+         return view('pinjaman.index',[
+         "pages" => "Data Pinjaman",
+         "title" => "Restored",
+         "pinjamans" => $pinjaman,
+         "barangs" => $barang,
+         "breadcrumb" => "Restored",
+         "PDF" => "restoredPDF"
+         ]);
    }
    public function allPDF()
    {
       $data = DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
-                  ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->get();
+             ->select('pinjamen.id','barangs.nama','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','pinjamen.status')->get();
       $pdf = PDF::loadView('pinjaman.pdf.all',['data' => $data]);
       return $pdf->download('pinjaman.pdf');
    }
    public function retunredPDF()
    {
-      $data =  DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
-      ->select('pinjamen.id','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','barangs.nama','pinjamen.status')
-      ->where('pinjamen.status',1)->get();
-      $pdf = PDF::loadView('pinjaman.pdf.all',['data' => $data]);
-      return $pdf->download('pinjaman.pdf');
+         $data =  DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+         ->select('pinjamen.id','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','barangs.nama','pinjamen.status')
+         ->where('pinjamen.status',1)->get();
+         $pdf = PDF::loadView('pinjaman.pdf.all',['data' => $data]);
+         return $pdf->download('pinjaman.pdf');
    }
    public function restoredPDF()
    {
-      $data =  DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
-            ->select('pinjamen.id','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','barangs.nama','pinjamen.status')
-            ->where('pinjamen.status',0)->get();
-      $pdf = PDF::loadView('pinjaman.pdf.all',['data' => $data]);
-      return $pdf->download('pinjaman.pdf');
+         $data =  DB::table('pinjamen')->join('barangs','pinjamen.barang_id', '=' , 'barangs.id')
+               ->select('pinjamen.id','pinjamen.nama_peminjam','pinjamen.tanggal_peminjaman','barangs.nama','pinjamen.status')
+               ->where('pinjamen.status',0)->get();
+         $pdf = PDF::loadView('pinjaman.pdf.all',['data' => $data]);
+         return $pdf->download('pinjaman.pdf');
    } 
 }
